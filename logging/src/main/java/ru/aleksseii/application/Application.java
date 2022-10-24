@@ -34,8 +34,10 @@ public final class Application {
             while (true) {
 
                 String line = scanner.nextLine();
+                consoleLogger.log(lineCounter++, line);
 
             }
+
         } catch (IllegalStateException e) {
             e.printStackTrace();
         } catch (NoSuchElementException e) {

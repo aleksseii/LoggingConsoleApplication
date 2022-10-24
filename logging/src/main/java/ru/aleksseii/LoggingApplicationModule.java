@@ -18,6 +18,5 @@ public final class LoggingApplicationModule extends AbstractModule {
 
         bind(FileLogger.class).toInstance(new FileLogger());
 
-//        bind(Application.class).toInstance(new Application(ConsoleLogger.class, FileLogger.class));
     }
 }

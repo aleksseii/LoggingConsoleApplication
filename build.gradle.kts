@@ -20,11 +20,16 @@ allprojects {
     version = "1.0-SNAPSHOT"
 
     dependencies {
+
         implementation("com.google.inject:guice:5.1.0")
+
         implementation("org.jetbrains:annotations:23.0.0")
 
         compileOnly("org.projectlombok:lombok:1.18.24")
         annotationProcessor("org.projectlombok:lombok:1.18.24")
+
+        implementation("org.apache.logging.log4j:log4j-core:2.19.0")
+        implementation("org.apache.logging.log4j:log4j-api:2.19.0")
     }
 }
 
