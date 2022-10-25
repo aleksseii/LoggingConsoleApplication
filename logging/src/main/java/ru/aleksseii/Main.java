@@ -9,8 +9,7 @@ public final class Main {
 
     public static void main(@NotNull String @NotNull [] args) {
 
-        final Injector injector = Guice.createInjector(new LoggingApplicationModule());
-        Application application = injector.getInstance(Application.class);
-        application.waitForInput();
+        final Injector injector = Guice.createInjector(new LoggingApplicationModule(args));
+        injector.getInstance(Application.class).waitForInput();
     }
 }

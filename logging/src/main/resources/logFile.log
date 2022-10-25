@@ -1,17 +1,12 @@
-2022/10/25 05:34:43
-1 this is
-3 my first
-5 execution
+2022/10/25 22:59:56
+1 <tag>this</tag>
+3 <tag>is</tag>
+5 <tag>my</tag>
+7 <tag>composite</tag>
+9 <tag>logging</tag>
 
-2022/10/25 05:35:10
-1 this
-3 is
-5 my
-7 second
-9 execution
-11 yup
-
-2022/10/25 05:35:43
-1 third
-3 exec
-5 yeyey
+2022/10/25 23:00:31
+1 <tag>second</tag>
+3 <tag>composite</tag>
+5 <tag>logging</tag>
+7 <tag>yup</tag>

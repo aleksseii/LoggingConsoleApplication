@@ -1,6 +1,10 @@
 package ru.aleksseii.logger;
 
-public interface Logger {
+import org.jetbrains.annotations.NotNull;
 
-    void log(long lineNumber, String message);
+public abstract class Logger {
+
+    protected static long linesCounter = 0L;
+
+    public abstract void log(@NotNull String message);
 }

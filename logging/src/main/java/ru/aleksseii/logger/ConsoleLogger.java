@@ -1,6 +1,8 @@
 package ru.aleksseii.logger;
 
-public final class ConsoleLogger implements Logger {
+import org.jetbrains.annotations.NotNull;
+
+public final class ConsoleLogger extends Logger {
 
     private final java.util.logging.Logger logger =
             java.util.logging.Logger.getLogger(ConsoleLogger.class.getName());
@@ -10,7 +12,7 @@ public final class ConsoleLogger implements Logger {
     }
 
     @Override
-    public void log(long lineNumber, String message) {
-        logger.info(lineNumber + " " + message);
+    public void log(@NotNull String message) {
+        logger.info(linesCounter++ + " " + message);
     }
 }
