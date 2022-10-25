@@ -2,7 +2,10 @@ package ru.aleksseii;
 
 import com.google.inject.AbstractModule;
 
+import org.apache.logging.log4j.LogManager;
+
 import org.jetbrains.annotations.NotNull;
+
 import ru.aleksseii.logger.CompositeLogger;
 import ru.aleksseii.logger.ConsoleLogger;
 import ru.aleksseii.logger.FileLogger;
@@ -24,20 +27,24 @@ public final class LoggingApplicationModule extends AbstractModule {
 
         switch (cmdArguments[0].toLowerCase(Locale.ROOT)) {
 
-            case "console" -> bind(Logger.class).toInstance(new ConsoleLogger());
+            case "console" -> bind(Logger.class).toInstance(
+                    new ConsoleLogger(LogManager.getLogger(ConsoleLogger.class))
+            );
             case "file" -> {
                 if (cmdArguments.length < 2) {
                     throw new IllegalArgumentException("missing tag");
                 }
-                bind(Logger.class).toInstance(new FileLogger(cmdArguments[1]));
+                bind(Logger.class).toInstance(
+                        new FileLogger(LogManager.getLogger(FileLogger.class), cmdArguments[1])
+                );
             }
             case "composite" -> {
                 if (cmdArguments.length < 2) {
                     throw new IllegalArgumentException("missing tag");
                 }
                 bind(Logger.class).toInstance(new CompositeLogger(
-                                new ConsoleLogger(),
-                                new FileLogger(cmdArguments[1])
+                                new ConsoleLogger(LogManager.getLogger(ConsoleLogger.class)),
+                                new FileLogger(LogManager.getLogger(FileLogger.class), cmdArguments[1])
                         ));
             }
             default -> throw new IllegalArgumentException("There is no such a logging option");

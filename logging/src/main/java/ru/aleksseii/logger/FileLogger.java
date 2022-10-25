@@ -1,5 +1,6 @@
 package ru.aleksseii.logger;
 
+import com.google.inject.Inject;
 import org.jetbrains.annotations.NotNull;
 
 import java.time.LocalDateTime;
@@ -8,12 +9,15 @@ import java.time.format.DateTimeFormatter;
 
 public final class FileLogger extends Logger {
 
-    private final org.apache.logging.log4j.Logger logger =
-            org.apache.logging.log4j.LogManager.getLogger(this);
+    private final @NotNull org.apache.logging.log4j.Logger logger;
 
     private final @NotNull String tag;
 
-    public FileLogger(@NotNull String tagName) {
+    @Inject
+    public FileLogger(@NotNull org.apache.logging.log4j.Logger logger,
+                      @NotNull String tagName) {
+
+        this.logger = logger;
         this.tag = "<" + tagName + ">%s</" + tagName + ">";
         logDateTime(LocalDateTime.now());
     }
