@@ -2,6 +2,7 @@ package ru.aleksseii;
 
 import com.google.inject.AbstractModule;
 
+import org.jetbrains.annotations.NotNull;
 import ru.aleksseii.logger.CompositeLogger;
 import ru.aleksseii.logger.ConsoleLogger;
 import ru.aleksseii.logger.FileLogger;
@@ -11,25 +12,15 @@ import java.util.Locale;
 
 public final class LoggingApplicationModule extends AbstractModule {
 
-    private final String[] cmdArguments;
+    private final @NotNull String @NotNull [] cmdArguments;
 
-    public LoggingApplicationModule(String[] cmdArguments) {
+    public LoggingApplicationModule(@NotNull String @NotNull [] cmdArguments) {
         super();
         this.cmdArguments = cmdArguments;
     }
 
     @Override
     protected void configure() {
-
-//        binder().requireExplicitBindings();
-
-//        bind(Logger.class).annotatedWith(IntoConsole.class).to(ConsoleLogger.class);
-//
-//        bind(Logger.class).annotatedWith(IntoFile.class).to(FileLogger.class);
-//
-//        bind(ConsoleLogger.class).toInstance(new ConsoleLogger());
-
-//        bind(FileLogger.class).toInstance(new FileLogger());
 
         switch (cmdArguments[0].toLowerCase(Locale.ROOT)) {
 
@@ -38,18 +29,18 @@ public final class LoggingApplicationModule extends AbstractModule {
                 if (cmdArguments.length < 2) {
                     throw new IllegalArgumentException("missing tag");
                 }
-
                 bind(Logger.class).toInstance(new FileLogger(cmdArguments[1]));
-            } case "composite" -> {
+            }
+            case "composite" -> {
                 if (cmdArguments.length < 2) {
                     throw new IllegalArgumentException("missing tag");
                 }
-
                 bind(Logger.class).toInstance(new CompositeLogger(
                                 new ConsoleLogger(),
                                 new FileLogger(cmdArguments[1])
                         ));
-            } default -> throw new IllegalArgumentException("There is no such a logging option");
+            }
+            default -> throw new IllegalArgumentException("There is no such a logging option");
         }
     }
 }

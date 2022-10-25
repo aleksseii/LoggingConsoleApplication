@@ -5,9 +5,9 @@ import org.jetbrains.annotations.NotNull;
 
 public final class CompositeLogger extends Logger {
 
-    private final Logger consoleLogger;
+    private final @NotNull Logger consoleLogger;
 
-    private final Logger fileLogger;
+    private final @NotNull Logger fileLogger;
 
     @Inject
     public CompositeLogger(@NotNull Logger consoleLogger,

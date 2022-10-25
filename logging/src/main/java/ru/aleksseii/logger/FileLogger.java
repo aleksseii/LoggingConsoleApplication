@@ -11,9 +11,9 @@ public final class FileLogger extends Logger {
     private final org.apache.logging.log4j.Logger logger =
             org.apache.logging.log4j.LogManager.getLogger(this);
 
-    private final String tag;
+    private final @NotNull String tag;
 
-    public FileLogger(String tagName) {
+    public FileLogger(@NotNull String tagName) {
         this.tag = "<" + tagName + ">%s</" + tagName + ">";
         logDateTime(LocalDateTime.now());
     }
@@ -23,7 +23,7 @@ public final class FileLogger extends Logger {
         logger.info(linesCounter++ + " " + String.format(this.tag, message));
     }
 
-    private void logDateTime(LocalDateTime dateTime) {
+    private void logDateTime(@NotNull LocalDateTime dateTime) {
         DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy/MM/dd HH:mm:ss");
         logger.info("\n" + formatter.format(dateTime));
     }
