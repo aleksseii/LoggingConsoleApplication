@@ -1,10 +1,13 @@
 package ru.aleksseii.logger;
 
-import org.apache.logging.log4j.LogManager;
-
 public final class ConsoleLogger implements Logger {
 
-     private final org.apache.logging.log4j.Logger logger = LogManager.getLogger(this);
+    private final java.util.logging.Logger logger =
+            java.util.logging.Logger.getLogger(ConsoleLogger.class.getName());
+
+    static {
+        System.setProperty("java.util.logging.SimpleFormatter.format", "%5$s%n");
+    }
 
     @Override
     public void log(long lineNumber, String message) {

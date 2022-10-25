@@ -4,6 +4,7 @@ import com.google.inject.Inject;
 import org.jetbrains.annotations.NotNull;
 import ru.aleksseii.logger.*;
 
+import java.time.LocalDateTime;
 import java.util.NoSuchElementException;
 import java.util.Scanner;
 
@@ -28,14 +29,15 @@ public final class Application {
         try (Scanner scanner = new Scanner(System.in)) {
             System.out.println("Waiting for new lines. Key in Ctrl+D to exit.");
 
-            long lineCounter = 0;
+            ((FileLogger) fileLogger).logDateTime(LocalDateTime.now());
 
+            long lineCounter = 0;
             //noinspection InfiniteLoopStatement
             while (true) {
 
                 String line = scanner.nextLine();
                 consoleLogger.log(lineCounter++, line);
-
+                fileLogger.log(lineCounter++, line);
             }
 
         } catch (IllegalStateException e) {
