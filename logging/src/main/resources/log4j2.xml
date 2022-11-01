@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Configuration name="loggersConfig" status="DEBUG">
+    <Appenders>
+        <Console name="consoleAppender" target="SYSTEM_OUT">
+            <PatternLayout pattern="%msg%n"/>
+        </Console>
+
+        <File name="fileAppender" fileName="logging/src/main/resources/logFile.log">
+            <PatternLayout pattern="%msg%n"/>
+        </File>
+    </Appenders>
+
+    <Loggers>
+        <Logger name="ru.aleksseii.logger.ConsoleLogger" level="info" additivity="false">
+            <AppenderRef ref="consoleAppender"/>
+        </Logger>
+
+        <Logger name="ru.aleksseii.logger.FileLogger" level="info" additivity="false">
+            <AppenderRef ref="fileAppender"/>
+        </Logger>
+    </Loggers>
+</Configuration>
